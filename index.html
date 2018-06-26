@@ -47,6 +47,15 @@
             zoomControl:true, maxZoom:14, minZoom:7
         }).fitBounds([[30.703770010157015,33.63006277496208],[32.62926996243004,36.27873436829616]]);
         var hash = new L.Hash(map);
+        
+        
+        var MassuotIcon = L.icon({
+            iconUrl: 'logo1.png',
+            iconSize:     [139, 93], // size of the icon   
+            iconAnchor:   [50, 90], //[22, 94] point of the icon which will correspond to marker's location            
+        });
+        var Massuot =L.marker([31.70245,34.68909], {icon: MassuotIcon});//34.68909,31.70245
+        
         map.attributionControl.addAttribution('<a href="https://github.com/tomchadwin/qgis2web" target="_blank">qgis2web</a>');
         var bounds_group = new L.featureGroup([]);
         function setBounds() {
@@ -153,7 +162,9 @@
             "הצעות טרמפים":off,
           },
           "שכבות נוספות": {
+            "משואות יצחק":Massuot,
             "קווים":kav
+            
           }
         };
         var options = {
