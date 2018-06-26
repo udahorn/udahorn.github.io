@@ -137,19 +137,15 @@
         bounds_group.addLayer(layer_line_diss_1);
         //map.addLayer(layer_line_diss_1);
         
-        var req = L.layerGroup([layer_req_1]);
-        var off = L.layerGroup([layer_off_2]);
+        //var req = L.layerGroup([layer_req_1]);
+        //var off = L.layerGroup([layer_off_2]);
         var kav = L.layerGroup([layer_line_diss_1]);
         var baseMaps = {
             "מפת רקע שחורה": overlay_DarkMatterretina_0,
             "Streets": OpenStreetMap_Mapnik
         };
         
-        var overlayMaps = {
-            "בקשות טרמפים": req,
-            "הצעות טרמפים":off,
-            "קווים":kav
-            };
+        
         //L.control.layers( baseMaps,overlayMaps).addTo(map);
         //var mapControlsContainer = document.getElementsByClassName("leaflet-control")[0];
         //var logoContainer = document.getElementById("logoContainer");
@@ -158,8 +154,8 @@
         
         var groupedOverlays = {
           "מפות חום": {
-            "בקשות טרמפים": req,
-            "הצעות טרמפים":off,
+            "בקשות טרמפים": layer_req_1,
+            "הצעות טרמפים":layer_off_2,
           },
           "שכבות נוספות": {
             "משואות יצחק":Massuot,
