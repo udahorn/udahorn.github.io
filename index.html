@@ -9,6 +9,7 @@
         <link rel="stylesheet" href="css/leaflet.css">
         <link rel="stylesheet" href="css/qgis2web.css">
         <link rel="stylesheet" href="css/Control.OSMGeocoder.css">
+        <link rel="stylesheet" href="css/leaflet.groupedlayercontrol.css" />
         <style>
         html, body, #map {
             width: 100%;
@@ -21,9 +22,10 @@
     </head>
     <body>
         <div id="map">
-        <div id="logoContainer">
+        <!--<div id="logoContainer">
          <img src="images/logo.jpg"/>
-        </div>
+        </div> -->
+        <!--<div id="logoContainer">-->
         <script src="js/qgis2web_expressions.js"></script>
         <script src="js/leaflet.js"></script>
         <script src="js/leaflet-heat.js"></script>
@@ -35,13 +37,14 @@
         <script src="js/labelgun.min.js"></script>
         <script src="js/labels.js"></script>
         <script src="js/Control.OSMGeocoder.js"></script>
+        <script src="js/leaflet.groupedlayercontrol.js"></script>
         <script src="data/req_1.js"></script>
         <script src="data/off_2.js"></script>
         <script src="data/line_diss_1.js"></script>
         <script>
         var map = L.map('map', {
             zoom: 11,
-            zoomControl:true, maxZoom:12, minZoom:7
+            zoomControl:true, maxZoom:14, minZoom:7
         }).fitBounds([[30.703770010157015,33.63006277496208],[32.62926996243004,36.27873436829616]]);
         var hash = new L.Hash(map);
         map.attributionControl.addAttribution('<a href="https://github.com/tomchadwin/qgis2web" target="_blank">qgis2web</a>');
@@ -49,10 +52,16 @@
         function setBounds() {
         }
         var overlay_DarkMatterretina_0 = L.tileLayer('http://a.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}@2x.png', {
+            attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a> &copy; <a href="http://cartodb.com/attributions">CartoDB</a>',
             opacity: 1.0
         });
         overlay_DarkMatterretina_0.addTo(map);
         map.addLayer(overlay_DarkMatterretina_0);
+        
+        var OpenStreetMap_Mapnik = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            maxZoom: 19,
+            attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+        });
         
 
         map.createPane('pane_req_1');
@@ -66,7 +75,7 @@
             max: 1,
             minOpacity: 0.5,
             blur: 90,
-            gradient:{0.4: '#ffb3b3', 0.65: 'red', 1:'#661400' }});
+            gradient:{0.4: '#ffb3b3',0.5: '#ff6666', 0.65: 'red', 1:'#661400' }});
             //gradient: {0: '#000004', 0.0196078: '#02020b', 0.0392157: '#050416', 0.0588235: '#090720', 0.0784314: '#0e0b2b', 0.0980392: '#140e36', 0.117647: '#1a1042', 0.137255: '#21114e', 0.156863: '#29115a', 0.176471: '#311165', 0.196078: '#390f6e', 0.215686: '#420f75', 0.235294: '#4a1079', 0.254902: '#52137c', 0.27451: '#5a167e', 0.294118: '#621980', 0.313725: '#6a1c81', 0.333333: '#721f81', 0.352941: '#792282', 0.372549: '#812581', 0.392157: '#892881', 0.411765: '#912b81', 0.431373: '#992d80', 0.45098: '#a1307e', 0.470588: '#aa337d', 0.490196: '#b2357b', 0.509804: '#ba3878', 0.529412: '#c23b75', 0.54902: '#ca3e72', 0.568627: '#d2426f', 0.588235: '#d9466b', 0.607843: '#e04c67', 0.627451: '#e75263', 0.647059: '#ec5860', 0.666667: '#f1605d', 0.686275: '#f4695c', 0.705882: '#f7725c', 0.72549: '#f97b5d', 0.745098: '#fb8560', 0.764706: '#fc8e64', 0.784314: '#fd9869', 0.803922: '#fea16e', 0.823529: '#feaa74', 0.843137: '#feb47b', 0.862745: '#febd82', 0.882353: '#fec68a', 0.901961: '#fecf92', 0.921569: '#fed89a', 0.941176: '#fde2a3', 0.960784: '#fdebac', 0.980392: '#fcf4b6', 1: '#fcfdbf'}});
         bounds_group.addLayer(layer_req_1);
         map.addLayer(layer_req_1);
@@ -82,7 +91,7 @@
             radius: 25,
             max: 1,
             minOpacity: 0.4,
-            blur: 90,
+            blur: 85,
             gradient:{0.0: '#cce0ff', 0.5: '#0066ff', 1: '#002966'}});
             //gradient: {0: '#440154', 0.0196078: '#46085c', 0.0392157: '#471063', 0.0588235: '#481769', 0.0784314: '#481d6f', 0.0980392: '#482475', 0.117647: '#472a7a', 0.137255: '#46307e', 0.156863: '#453781', 0.176471: '#433d84', 0.196078: '#414287', 0.215686: '#3f4889', 0.235294: '#3d4e8a', 0.254902: '#3a538b', 0.27451: '#38598c', 0.294118: '#355e8d', 0.313725: '#33638d', 0.333333: '#31688e', 0.352941: '#2e6d8e', 0.372549: '#2c718e', 0.392157: '#2a768e', 0.411765: '#297b8e', 0.431373: '#27808e', 0.45098: '#25848e', 0.470588: '#23898e', 0.490196: '#218e8d', 0.509804: '#20928c', 0.529412: '#1f978b', 0.54902: '#1e9c89', 0.568627: '#1fa188', 0.588235: '#21a585', 0.607843: '#24aa83', 0.627451: '#28ae80', 0.647059: '#2eb37c', 0.666667: '#35b779', 0.686275: '#3dbc74', 0.705882: '#46c06f', 0.72549: '#50c46a', 0.745098: '#5ac864', 0.764706: '#65cb5e', 0.784314: '#70cf57', 0.803922: '#7cd250', 0.823529: '#89d548', 0.843137: '#95d840', 0.862745: '#a2da37', 0.882353: '#b0dd2f', 0.901961: '#bddf26', 0.921569: '#cae11f', 0.941176: '#d8e219', 0.960784: '#e5e419', 0.980392: '#f1e51d', 1: '#fde725'}});
         bounds_group.addLayer(layer_off_2);
@@ -122,16 +131,39 @@
         var req = L.layerGroup([layer_req_1]);
         var off = L.layerGroup([layer_off_2]);
         var kav = L.layerGroup([layer_line_diss_1]);
+        var baseMaps = {
+            "מפת רקע שחורה": overlay_DarkMatterretina_0,
+            "Streets": OpenStreetMap_Mapnik
+        };
+        
         var overlayMaps = {
             "בקשות טרמפים": req,
             "הצעות טרמפים":off,
             "קווים":kav
             };
-        L.control.layers( overlayMaps).addTo(map);
-        var mapControlsContainer = document.getElementsByClassName("leaflet-control")[0];
+        //L.control.layers( baseMaps,overlayMaps).addTo(map);
+        //var mapControlsContainer = document.getElementsByClassName("leaflet-control")[0];
         //var logoContainer = document.getElementById("logoContainer");
 
         //mapControlsContainer.appendChild(logoContainer);
+        
+        var groupedOverlays = {
+          "מפות חום": {
+            "בקשות טרמפים": req,
+            "הצעות טרמפים":off,
+          },
+          "שכבות נוספות": {
+            "קווים":kav
+          }
+        };
+        var options = {
+      // Make the "Landmarks" group exclusive (use radio inputs)
+      exclusiveGroups: ["מפות חום"],
+      // Show a checkbox next to non-exclusive group labels for toggling all
+      groupCheckboxes: true
+        };
+        var layerControl = L.control.groupedLayers(baseMaps, groupedOverlays, options);
+        map.addControl(layerControl);
         </script>
     </body>
 </html>
