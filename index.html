@@ -10,6 +10,7 @@
         <link rel="stylesheet" href="css/qgis2web.css">
         <link rel="stylesheet" href="css/Control.OSMGeocoder.css">
         <link rel="stylesheet" href="css/leaflet.groupedlayercontrol.css" />
+        <link rel="stylesheet" href="css/L.Control.Window.css" />
         <style>
         html, body, #map {
             width: 100%;
@@ -22,10 +23,8 @@
     </head>
     <body>
         <div id="map">
-        <!--<div id="logoContainer">
-         <img src="images/logo.jpg"/>
-        </div> -->
-        <!--<div id="logoContainer">-->
+         
+        <!--<div id="logoContainer"><img src="images/logo.jpg"/>-->
         <script src="js/qgis2web_expressions.js"></script>
         <script src="js/leaflet.js"></script>
         <script src="js/leaflet-heat.js"></script>
@@ -41,7 +40,11 @@
         <script src="data/req_1.js"></script>
         <script src="data/off_2.js"></script>
         <script src="data/line_diss_1.js"></script>
+        <script src="js/L.Control.Window.js"></script>
         <script>
+        
+        
+        
         var map = L.map('map', {
             zoom: 11,
             zoomControl:true, maxZoom:14, minZoom:7
@@ -56,7 +59,9 @@
         });
         var Massuot =L.marker([31.70245,34.68909], {icon: MassuotIcon});//34.68909,31.70245
         
+        
         map.attributionControl.addAttribution('<a href="https://github.com/tomchadwin/qgis2web" target="_blank">qgis2web</a>');
+        
         var bounds_group = new L.featureGroup([]);
         function setBounds() {
         }
@@ -142,12 +147,15 @@
         var kav = L.layerGroup([layer_line_diss_1]);
         var baseMaps = {
             "מפת רקע שחורה": overlay_DarkMatterretina_0,
-            "Streets": OpenStreetMap_Mapnik
+            "מפת רחובות": OpenStreetMap_Mapnik
         };
         
         
         //L.control.layers( baseMaps,overlayMaps).addTo(map);
-        //var mapControlsContainer = document.getElementsByClassName("leaflet-control")[0];
+        var mapControlsContainer = document.getElementsByClassName("leaflet-control")[0];
+        
+        
+        
         //var logoContainer = document.getElementById("logoContainer");
 
         //mapControlsContainer.appendChild(logoContainer);
@@ -171,6 +179,13 @@
         };
         var layerControl = L.control.groupedLayers(baseMaps, groupedOverlays, options);
         map.addControl(layerControl);
+        
+        var s ='הצגה ויזואלית של קבוצת הטרמפים של משואות  יצחק \n המפה מציגה ניתוח של הטקסט בקבוצת הטרמפים והצגה על המפה תוך חלוקה לבקשת טרמפים והצעת טרמפים \n למען הסר ספק אין במפה מידע אישי אודות מציעי/מבקשי הטרמפים ' 
+        var p='\n\n לפרטים נוספים על אופן הכנת המפה \n\n'
+        
+        var result = p.link("http://geoint.co.il");
+        var win =  L.control.window(map,{title:'מיפוי קבוצת טרמפים - משואות יצחק',content:s+result})
+           .show()
         </script>
     </body>
 </html>
