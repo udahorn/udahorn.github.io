@@ -187,14 +187,14 @@
         var p='\n\n לפרטים נוספים על אופן הכנת המפה \n\n'
         
         //var result = p.link("http://geoint.co.il");
-        var result =('<a href="http://geoint.co.il" target="_blank">\n\n לפרטים נוספים על אופן הכנת המפה \n\n</a>')
+        var result =('<a href="http://www.geoint.co.il/%D7%9E%D7%99%D7%A4%D7%95%D7%99-%D7%A7%D7%91%D7%95%D7%A6%D7%AA-%D7%95%D7%95%D7%98%D7%A1%D7%90%D7%A4/" target="_blank">\n\n לפרטים נוספים על אופן הכנת המפה \n\n</a>')
        
         var win =  L.control.window(map,{title:'מיפוי קבוצת ווטסאפ',content:s+result}).show()
            
         var credctrl = L.controlCredits({
             image: "images/logo.jpg",
             link: "http://www.geoint.co.il/",
-            text: "לפרטים נוספים <br/>http://geoint.co.il<br/> יהודה הורן",
+            text: "לפרטים נוספים <br/>http://www.geoint.co.il/%D7%9E%D7%99%D7%A4%D7%95%D7%99-%D7%A7%D7%91%D7%95%D7%A6%D7%AA-%D7%95%D7%95%D7%98%D7%A1%D7%90%D7%A4/<br/> יהודה הורן",
             width: 50,
             height: 50
         }).addTo(map);
