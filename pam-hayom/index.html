@@ -58,6 +58,9 @@ h1,h2,h3,p{margin:0}
 .era.old .cap{color:var(--old)} .era.new .cap{color:var(--new)}
 .era.old{background:linear-gradient(var(--sheet),var(--old-tint))} .era.new{background:linear-gradient(var(--sheet),var(--new-tint))}
 .era.dim{opacity:.5}
+.era .lbl{position:absolute;bottom:14px;left:50%;transform:translateX(-50%) rotate(-3deg);font-family:var(--f-hand);font-weight:700;font-size:36px;line-height:1.1;padding:0 16px;background:rgba(255,253,247,.93);box-shadow:2px 3px 0 rgba(59,56,51,.15);white-space:nowrap}
+.era.new .lbl{transform:translateX(-50%) rotate(2.5deg)}
+.era.old .lbl{color:var(--old)} .era.new .lbl{color:var(--new)}
 .ring{position:absolute;inset:-10px;width:calc(100% + 20px);height:calc(100% + 20px);pointer-events:none;overflow:visible}
 .ring path{fill:none;stroke-width:5;stroke-linecap:round;stroke-dasharray:1200;stroke-dashoffset:1200;animation:draw .7s ease-out forwards}
 @keyframes draw{to{stroke-dashoffset:0}}
@@ -113,9 +116,11 @@ h1,h2,h3,p{margin:0}
     <div class="eras">
       <button class="era old sketch" type="button" id="bOld" aria-label="לפני השינוי">
         <svg class="pic" viewBox="0 0 200 220" aria-hidden="true"><use href="#artOld"/></svg>
+        <span class="lbl sketch" aria-hidden="true">לפני</span>
       </button>
       <button class="era new sketch2" type="button" id="bNew" aria-label="אחרי השינוי">
         <svg class="pic" viewBox="0 0 200 220" aria-hidden="true"><use href="#artNew"/></svg>
+        <span class="lbl sketch2" aria-hidden="true">אחרי</span>
       </button>
     </div>
   </div>
